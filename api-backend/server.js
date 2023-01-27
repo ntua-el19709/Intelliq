@@ -3,8 +3,6 @@ const app = express()
 
 const chalk = require("chalk")
 
-const indexRouter = require('./routes/index')
-
 // INSTALL AND UNCOMMENT IF TEMPLATES/LAYOUTS ARE NEEDED
 // const expressLayouts = require('express-ejs-layouts')
 // app.set('view engine', 'ejs')
@@ -12,8 +10,6 @@ const indexRouter = require('./routes/index')
 // app.set('layout', 'layouts/layout')
 // app.use(expressLayouts)
 app.use(express.static('public'))
-
-app.use('/', indexRouter)
 
 const port = process.env.PORT || 9103;
 const baseurl = '/intelliq_api'
@@ -24,7 +20,9 @@ app.listen(port, () => {
     console.log(chalk.green(`🚀 Server running at: http://localhost:${port}${baseurl}`));
 });
 
-const healthcheck = require('./api/admin/healthcheck')
+const healthcheck = require('./api/admin/healthcheck'),
+      resetall    = require('./api/admin/resetall')
 
 app.use(baseurl + '/admin/healthcheck', healthcheck)
+app.use(baseurl + '/admin/resetall', resetall)
 

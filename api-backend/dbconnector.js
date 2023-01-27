@@ -3,7 +3,8 @@ const pool = mysql.createPool({
     host: "localhost",
     user: "softenguser",
     password: "password",
-    database: "intelliqdb"
+    database: "intelliqdb",
+    multipleStatements: true
 })
 
 module.exports = pool
