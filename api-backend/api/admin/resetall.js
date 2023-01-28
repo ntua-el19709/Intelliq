@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const pool = require('./../../dbconnector')
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
     pool.getConnection((err, conn) => {
         if (err) {
             res.status(500).json({
