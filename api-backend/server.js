@@ -24,11 +24,13 @@ const healthcheck       = require('./api/admin/healthcheck'),
       questionnaire_upd = require('./api/admin/questionnaire_upd'),
       resetall          = require('./api/admin/resetall')
 
-const doanswer    = require('./api/doanswer')
+const questionnaire     = require('./api/questionnaire'),
+      doanswer          = require('./api/doanswer')
 
 app.use(baseurl + '/admin/healthcheck', healthcheck)
 app.use(baseurl + '/admin/questionnaire_upd', questionnaire_upd)
 app.use(baseurl + '/admin/resetall', resetall)
 
 app.use(baseurl + '/doanswer', doanswer)
+app.use(baseurl + '/questionnaire', questionnaire)
 
