@@ -20,9 +20,15 @@ app.listen(port, () => {
     console.log(chalk.green(`🚀 Server running at: http://localhost:${port}${baseurl}`));
 });
 
-const healthcheck = require('./api/admin/healthcheck'),
-      resetall    = require('./api/admin/resetall')
+const healthcheck       = require('./api/admin/healthcheck'),
+      questionnaire_upd = require('./api/admin/questionnaire_upd'),
+      resetall          = require('./api/admin/resetall')
+
+const doanswer    = require('./api/doanswer')
 
 app.use(baseurl + '/admin/healthcheck', healthcheck)
+app.use(baseurl + '/admin/questionnaire_upd', questionnaire_upd)
 app.use(baseurl + '/admin/resetall', resetall)
+
+app.use(baseurl + '/doanswer', doanswer)
 
