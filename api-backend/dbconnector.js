@@ -1,4 +1,4 @@
-const mysql = require('promise-mysql')
+const mysql = require('promise-mysql');
 
 const pool = mysql.createPool({
     host: "localhost",
@@ -8,6 +8,6 @@ const pool = mysql.createPool({
     charset: 'utf8mb4',
     connectionLimit: 100,
     multipleStatements: true
-})
+});
 
-module.exports = pool
+module.exports = pool;
