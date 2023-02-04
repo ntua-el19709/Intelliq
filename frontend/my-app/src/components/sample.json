@@ -1,0 +1,37 @@
+{
+  "questionnaireID": "QQ000",
+  "questionnaireTitle": "My first research questionnaire",
+  "keywords": ["footbal", "islands", "timezone"],
+  "questions": [
+    {
+      "qID": "P00",
+      "qtext": "Ποιο είναι το mail σας;",
+      "required": "FALSE",
+      "type": "profile"
+    },
+    {
+      "qID": "P01",
+      "qtext": "Ποια είναι η ηλικία σας;",
+      "required": "TRUE",
+      "type": "profile"
+    },
+    {
+      "qID": "Q01",
+      "qtext": "Ποιο είναι το αγαπημένο σας χρώμα;",
+      "required": "TRUE",
+      "type": "question"
+    },
+    {
+      "qID": "Q02",
+      "qtext": "Ασχολείστε με το ποδόσφαιρο;",
+      "required": "TRUE",
+      "type": "question"
+    },
+    {
+      "qID": "Q03",
+      "qtext": "Τι ομάδα είστε;",
+      "required": "TRUE",
+      "type": "question"
+    }
+  ]
+}

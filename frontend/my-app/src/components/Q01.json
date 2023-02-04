@@ -1,0 +1,25 @@
+{
+  "questionnaireID": "QQ000",
+  "qID ": "Q01",
+  "qtext": "Ποιο είναι το αγαπημένο σας χρώμα;",
+  "required": "TRUE",
+  "type": "question",
+  "options": [
+    {
+      "optID": "Q01A1",
+      "opttxt": "Πράσινο",
+      "nextqID": "Q02"
+    },
+    {
+      "optID": "Q01A2",
+      "opttxt": "Κόκκινο",
+      "nextqID": "Q02"
+    },
+
+    {
+      "optID": "Q01A3",
+      "opttxt": "Κίτρινο",
+      "nextqID": "Q02"
+    }
+  ]
+}

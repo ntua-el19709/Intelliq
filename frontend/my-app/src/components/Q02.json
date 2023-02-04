@@ -1,0 +1,20 @@
+{
+  "questionnaireID": "QQ000",
+  "qID ": "Q02",
+  "qtext": "Ασχολείστε με το ποδόσφαιρο;",
+  "required": "TRUE",
+  "type": "question",
+  "options": [
+    {
+      "optID": "Q02A1",
+      "opttxt": "Ναι ",
+      "nextqID": "Q03"
+    },
+
+    {
+      "optID": "Q02A2",
+      "opttxt": "Οχι",
+      "nextqID": "Q04"
+    }
+  ]
+}

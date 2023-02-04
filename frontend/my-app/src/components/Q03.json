@@ -1,0 +1,26 @@
+{
+  "questionnaireID": "QQ000",
+  "qID ": "Q03",
+  "qtext": "Τι ομάδα είστε;",
+  "required": "TRUE",
+  "type": "question",
+  "options": [
+    {
+      "optID": "Q03A1",
+      "opttxt": "Παναθηναϊκός ",
+      "nextqID": "-"
+    },
+
+    {
+      "optID": "Q03A2",
+      "opttxt": "Ολυμπιακός ",
+      "nextqID": "-"
+    },
+
+    {
+      "optID": "Q03A3",
+      "opttxt": "ΑΕΚ",
+      "nextqID": "-"
+    }
+  ]
+}
