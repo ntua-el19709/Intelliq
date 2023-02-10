@@ -28,6 +28,14 @@ class Questionnaire extends Component {
 
   handlePressNext = (nqid, oid) => {
     //post oid(optionID),
+    fetch(
+      `http://localhost:9103/intelliq_api/doanswer/${this.state.questionnaireID}/${this.state.qID}/${oid}`,
+      {
+        method: "POST",
+        mode: "cors",
+      }
+    );
+
     if (nqid === "-") this.setState({ finished: 1 });
     else this.setState({ qID: nqid });
   };
