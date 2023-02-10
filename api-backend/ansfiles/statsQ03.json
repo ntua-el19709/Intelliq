@@ -1,0 +1,14 @@
+{
+  "questionnaireID": "QQ000",
+  "questionID": "Q03",
+  "answers": [
+    { "session": "xxx", "ans": "Q03A1" },
+    { "session": "xxx", "ans": "Q03A1" },
+    { "session": "xxx", "ans": "Q03A1" },
+    { "session": "xxx", "ans": "Q03A2" },
+    { "session": "xxx", "ans": "Q03A3" },
+    { "session": "xxx", "ans": "Q03A3" },
+    { "session": "xxx", "ans": "Q03A3" },
+    { "session": "xxx", "ans": "Q03A3" }
+  ]
+}
