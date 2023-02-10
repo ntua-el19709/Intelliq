@@ -6,6 +6,16 @@ class Option extends Component {
   }
 
   formatbutton() {
+    console.log(this.props.option.opttxt);
+    if (this.props.option.opttxt === "<open string>")
+      return (
+        <input
+          type="text"
+          onChange={(val) =>
+            this.props.onPress(val.target.value, this.props.option.nextqID)
+          }
+        />
+      );
     if (this.props.selected === 0)
       return (
         <button

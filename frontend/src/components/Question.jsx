@@ -10,7 +10,7 @@ class Question extends Component {
       options: [],
     };
   }
-  componentDidMount(props) {
+  componentDidMount() {
     let QID = this.props.QID;
     let qID = this.props.qID;
     fetch(`http://localhost:9103/intelliq_api/question/${QID}/${qID}`)
@@ -32,11 +32,16 @@ class Question extends Component {
 
   handlePress = (pid, nqid) => {
     console.log("option pressed");
-    const options = this.state.options.map((option) => {
-      option.selected = option.optID === pid ? 1 : 0;
-      return option;
-    });
-    this.setState({ options: options, optionselected: pid, nextqid: nqid });
+    if (this.state.options[0].opttxt === "<open string>") {
+      if (pid === "") this.setState({ optionselected: -1, nextqid: nqid });
+      else this.setState({ optionselected: pid, nextqid: nqid });
+    } else {
+      const options = this.state.options.map((option) => {
+        option.selected = option.optID === pid ? 1 : 0;
+        return option;
+      });
+      this.setState({ options: options, optionselected: pid, nextqid: nqid });
+    }
   };
 
   render() {

@@ -51,7 +51,7 @@ class Questionnaire extends Component {
           className="btn btn-secondary m-2"
           onClick={this.handleClickStart}
         >
-          START!!!!!!!!!!
+          START
         </button>
       );
     else if (this.state.finished === 0)
