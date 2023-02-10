@@ -4,15 +4,26 @@ import Question from "./Question";
 class Questionnaire extends Component {
   constructor() {
     super();
-    let statet = require("./sample"); // must be repaced with api call
-
     this.state = {
-      questionnaireID: statet.questionnaireID,
-      questionnaireTitle: statet.questionnaireTitle,
-      qID: statet.questions[0].qID,
+      questionnaireTitle: "loading...",
       started: 0,
       finished: 0,
     };
+  }
+
+  componentDidMount() {
+    let QID = "QQ000";
+    fetch(`http://localhost:9103/intelliq_api/questionnaire/${QID}`)
+      .then((response) => response.json())
+      .then((result) => {
+        this.setState({
+          questionnaireID: result.questionnaireID,
+          questionnaireTitle: result.questionnaireTitle,
+          qID: result.questions[0].qID,
+          started: 0,
+          finished: 0,
+        });
+      });
   }
 
   handlePressNext = (nqid, oid) => {
@@ -26,10 +37,10 @@ class Questionnaire extends Component {
   };
   render() {
     return (
-      <dev>
+      <div>
         <h1>{this.state.questionnaireTitle}</h1>
         {this.formatPage()}
-      </dev>
+      </div>
     );
   }
 

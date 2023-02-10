@@ -4,25 +4,32 @@ import Option from "./Option";
 class Question extends Component {
   constructor(props) {
     super(props);
-    let qid = this.props.qID;
-    let obj = {}; // must be replaced with api call
-    if (qid === "P00") obj = require("./P00");
-    if (qid === "P01") obj = require("./P01");
-    if (qid === "Q01") obj = require("./Q01");
-    if (qid === "Q02") obj = require("./Q02");
-    if (qid === "Q03") obj = require("./Q03");
     this.state = {
-      qID: obj.qID,
-      qtext: obj.qtext,
-      type: obj.type,
-      options: obj.options.map((option) => {
-        option.selected = 0;
-        return option;
-      }),
       optionselected: -1,
-      nextqid: -1,
+      qtext: "loading...",
+      options: [],
     };
   }
+  componentDidMount(props) {
+    let QID = this.props.QID;
+    let qID = this.props.qID;
+    fetch(`http://localhost:9103/intelliq_api/question/${QID}/${qID}`)
+      .then((response) => response.json())
+      .then((obj) => {
+        this.setState({
+          qID: obj.qID,
+          qtext: obj.qtext,
+          type: obj.type,
+          options: obj.options.map((option) => {
+            option.selected = 0;
+            return option;
+          }),
+          optionselected: -1,
+          nextqid: -1,
+        });
+      });
+  }
+
   handlePress = (pid, nqid) => {
     console.log("option pressed");
     const options = this.state.options.map((option) => {
