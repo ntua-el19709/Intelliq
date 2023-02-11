@@ -23,12 +23,9 @@ class Statquestion extends Component {
           options: obj.options,
         });
       });
-
-    //console.log(qID, options);
     fetch(`http://localhost:9103/intelliq_api/getquestionanswers/${QID}/${qID}`)
       .then((response) => response.json())
       .then((obj) => {
-        //console.log(qID, obj);
         const counts = {};
         const answers = obj.answers.map((answer) => answer.ans);
         for (const ans of answers) {
@@ -40,25 +37,16 @@ class Statquestion extends Component {
         });
       });
   }
-
-  handlePress = (pid, nqid) => {
-    console.log("option pressed");
-    if (this.state.options[0].opttxt === "<open string>") {
-      if (pid === "") this.setState({ optionselected: -1, nextqid: nqid });
-      else this.setState({ optionselected: pid, nextqid: nqid });
-    } else {
-      const options = this.state.options.map((option) => {
-        option.selected = option.optID === pid ? 1 : 0;
-        return option;
-      });
-      this.setState({ options: options, optionselected: pid, nextqid: nqid });
-    }
-  };
+  getTitle() {
+    if (this.state.options[0] === undefined) return;
+    if (this.state.options[0].opttxt === "<open string>") return;
+    return <h2>{this.state.qtext}</h2>;
+  }
 
   render() {
     return (
       <div>
-        <h2>{this.state.qtext}</h2>
+        {this.getTitle()}
         {this.state.options.map((option) => (
           <Statoption
             key={option.optID}
@@ -69,24 +57,6 @@ class Statquestion extends Component {
         ))}
       </div>
     );
-  }
-
-  formatNextButton() {
-    if (this.state.optionselected !== -1)
-      return (
-        <button
-          className="btn btn-secondary m-2"
-          onClick={() =>
-            this.props.onPressNext(
-              this.state.nextqid,
-              this.state.optionselected
-            )
-          }
-        >
-          {"->"}
-        </button>
-      );
-    else return;
   }
 }
 

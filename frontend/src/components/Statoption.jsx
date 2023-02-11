@@ -2,17 +2,19 @@ import React, { Component } from "react";
 
 class Statoption extends Component {
   render() {
-    return <div>{this.formatbutton()}</div>;
+    return <div>{this.formatoption()}</div>;
   }
   getpercentage() {
     let opt = this.props.option.optID;
-    console.log(opt, this.props.counts, this.props.counts[opt]);
-    if (this.props.counts[opt])
-      return (this.props.counts[opt] * 100) / this.props.size;
+    let perc = 0;
+    if (this.props.counts[opt]) {
+      perc = (this.props.counts[opt] * 100) / this.props.size;
+      return perc.toFixed(2);
+    }
     return 0;
   }
 
-  formatbutton() {
+  formatoption() {
     if (this.props.option.opttxt === "<open string>") return;
     else
       return (

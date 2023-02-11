@@ -8,7 +8,6 @@ class Statquestionnaire extends Component {
       questionnaireTitle: "loading...",
       questions: [],
       started: 0,
-      finished: 0,
     };
   }
 
@@ -23,27 +22,15 @@ class Statquestionnaire extends Component {
           questions: result.questions,
           qID: result.questions[0].qID,
           started: 0,
-          finished: 0,
         });
       });
   }
 
-  handlePressNext = (nqid, oid) => {
-    //post oid(optionID),
-    fetch(
-      `http://localhost:9103/intelliq_api/doanswer/${this.state.questionnaireID}/${this.state.qID}/${oid}`,
-      {
-        method: "POST",
-        mode: "cors",
-      }
-    );
-
-    if (nqid === "-") this.setState({ finished: 1 });
-    else this.setState({ qID: nqid });
-  };
-
-  handleClickStart = () => {
+  handleClickSeeStats = () => {
     this.setState({ started: 1 });
+  };
+  handleClickBack = () => {
+    this.setState({ started: 0 });
   };
   render() {
     return (
@@ -59,12 +46,12 @@ class Statquestionnaire extends Component {
       return (
         <button
           className="btn btn-secondary m-2"
-          onClick={this.handleClickStart}
+          onClick={this.handleClickSeeStats}
         >
           See Statistics
         </button>
       );
-    else if (this.state.finished === 0)
+    else
       return (
         <div>
           {this.state.questions.map((question) => (
@@ -74,9 +61,14 @@ class Statquestionnaire extends Component {
               qID={question.qID}
             />
           ))}
+          <button
+            className="btn btn-secondary m-2"
+            onClick={this.handleClickBack}
+          >
+            Back
+          </button>
         </div>
       );
-    else return <h2>Questionnaire Completed</h2>;
   }
 }
 
