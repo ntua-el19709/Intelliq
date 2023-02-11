@@ -7,6 +7,7 @@ class Statquestion extends Component {
     this.state = {
       qtext: "loading...",
       options: [],
+      counts: {},
     };
   }
   componentDidMount() {
@@ -19,10 +20,23 @@ class Statquestion extends Component {
           qID: obj.qID,
           qtext: obj.qtext,
           type: obj.type,
-          options: obj.options.map((option) => {
-            option.perc = 50.0;
-            return option;
-          }),
+          options: obj.options,
+        });
+      });
+
+    //console.log(qID, options);
+    fetch(`http://localhost:9103/intelliq_api/getquestionanswers/${QID}/${qID}`)
+      .then((response) => response.json())
+      .then((obj) => {
+        //console.log(qID, obj);
+        const counts = {};
+        const answers = obj.answers.map((answer) => answer.ans);
+        for (const ans of answers) {
+          counts[ans] = counts[ans] ? counts[ans] + 1 : 1;
+        }
+        this.setState({
+          counts: counts,
+          size: answers.length,
         });
       });
   }
@@ -46,7 +60,12 @@ class Statquestion extends Component {
       <div>
         <h2>{this.state.qtext}</h2>
         {this.state.options.map((option) => (
-          <Statoption key={option.optID} option={option} />
+          <Statoption
+            key={option.optID}
+            option={option}
+            size={this.state.size}
+            counts={this.state.counts}
+          />
         ))}
       </div>
     );
