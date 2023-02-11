@@ -29,7 +29,8 @@ app.listen(port, () => {
 
 const healthcheck = require('./api/admin/healthcheck'),
     questionnaire_upd = require('./api/admin/questionnaire_upd'),
-    resetall = require('./api/admin/resetall');
+    resetall = require('./api/admin/resetall'),
+    resetq = require('./api/admin/resetq');
 
 const questionnaire = require('./api/questionnaire'),
     question = require('./api/question'),
@@ -40,6 +41,7 @@ const questionnaire = require('./api/questionnaire'),
 app.use(baseurl + '/admin/healthcheck', healthcheck);
 app.use(baseurl + '/admin/questionnaire_upd', questionnaire_upd);
 app.use(baseurl + '/admin/resetall', resetall);
+app.use(baseurl + '/admin/resetq', resetq);
 
 app.use(baseurl + '/questionnaire', questionnaire);
 app.use(baseurl + '/question', question);
