@@ -3,7 +3,7 @@ import React from "react";
 function Home() {
   return (
     <div>
-      <h1> Home Page</h1>
+      <h1> IntelliQ - The webpage for all the Questionnaires</h1>
       <div>
         <h2> For questionnaire completion enter:</h2>
         <ul>

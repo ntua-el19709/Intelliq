@@ -1,4 +1,3 @@
-//import "./App.css";
 import React from "react";
 import Questionnaire from "./components/Questionnaire";
 import Statquestionnaire from "./components/Statquestionnaire";
