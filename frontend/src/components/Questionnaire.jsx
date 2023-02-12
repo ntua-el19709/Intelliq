@@ -1,5 +1,14 @@
 import React, { Component } from "react";
 import Question from "./Question";
+import { useParams } from "react-router-dom";
+
+function withRouter(Component) {
+  function ComponentWithRouter(props) {
+    let params = useParams();
+    return <Component {...props} params={params} />;
+  }
+  return ComponentWithRouter;
+}
 
 class Questionnaire extends Component {
   constructor() {
@@ -12,7 +21,8 @@ class Questionnaire extends Component {
   }
 
   componentDidMount() {
-    let QID = "QQ000";
+    const QID = this.props.params.QID;
+    console.log(QID);
     fetch(`http://localhost:9103/intelliq_api/questionnaire/${QID}`)
       .then((response) => response.json())
       .then((result) => {
@@ -75,4 +85,4 @@ class Questionnaire extends Component {
   }
 }
 
-export default Questionnaire;
+export default withRouter(Questionnaire);
