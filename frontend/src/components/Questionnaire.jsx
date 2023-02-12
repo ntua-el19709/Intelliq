@@ -27,9 +27,10 @@ class Questionnaire extends Component {
   constructor() {
     super();
     this.state = {
-      questionnaireTitle: "loading...",
+      questionnaireTitle: "Loading...",
       started: 0,
       finished: 0,
+      found: 1,
     };
   }
 
@@ -38,6 +39,11 @@ class Questionnaire extends Component {
     fetch(`http://localhost:9103/intelliq_api/questionnaire/${QID}`)
       .then((response) => response.json())
       .then((result) => {
+        if (result.status === "failed") {
+          this.setState({
+            found: 0,
+          });
+        }
         this.setState({
           questionnaireID: result.questionnaireID,
           questionnaireTitle: result.questionnaireTitle,
@@ -45,6 +51,9 @@ class Questionnaire extends Component {
           started: 0,
           finished: 0,
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -66,32 +75,42 @@ class Questionnaire extends Component {
     this.setState({ started: 1, session: ranses });
   };
   render() {
-    return (
-      <div>
-        <h1>{this.state.questionnaireTitle}</h1>
-        {this.formatPage()}
-      </div>
-    );
+    return <div>{this.formatPage()}</div>;
   }
 
   formatPage() {
-    if (this.state.started === 0)
+    if (this.state.found === 0)
       return (
-        <button
-          className="btn btn-secondary m-2"
-          onClick={this.handleClickStart}
-        >
-          START
-        </button>
+        <div>
+          <h3>
+            The Questionnaire with id {this.props.params.QID} does not exist.
+            Please check the Questionnaire id and try again.
+          </h3>
+        </div>
+      );
+    else if (this.state.started === 0)
+      return (
+        <div>
+          <h1>{this.state.questionnaireTitle}</h1>
+          <button
+            className="btn btn-secondary m-2"
+            onClick={this.handleClickStart}
+          >
+            START
+          </button>
+        </div>
       );
     else if (this.state.finished === 0)
       return (
-        <Question
-          key={this.state.qID}
-          QID={this.state.questionnaireID}
-          qID={this.state.qID}
-          onPressNext={this.handlePressNext}
-        />
+        <div>
+          <h1>{this.state.questionnaireTitle}</h1>
+          <Question
+            key={this.state.qID}
+            QID={this.state.questionnaireID}
+            qID={this.state.qID}
+            onPressNext={this.handlePressNext}
+          />
+        </div>
       );
     else return <h2>Questionnaire Completed</h2>;
   }
