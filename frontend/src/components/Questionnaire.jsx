@@ -10,6 +10,19 @@ function withRouter(Component) {
   return ComponentWithRouter;
 }
 
+function makeid(length) {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
+
 class Questionnaire extends Component {
   constructor() {
     super();
@@ -22,7 +35,6 @@ class Questionnaire extends Component {
 
   componentDidMount() {
     const QID = this.props.params.QID;
-    console.log(QID);
     fetch(`http://localhost:9103/intelliq_api/questionnaire/${QID}`)
       .then((response) => response.json())
       .then((result) => {
@@ -37,9 +49,8 @@ class Questionnaire extends Component {
   }
 
   handlePressNext = (nqid, oid) => {
-    //post oid(optionID),
     fetch(
-      `http://localhost:9103/intelliq_api/doanswer/${this.state.questionnaireID}/${this.state.qID}/${oid}`,
+      `http://localhost:9103/intelliq_api/doanswer/${this.state.questionnaireID}/${this.state.qID}/${this.state.session}/${oid}`,
       {
         method: "POST",
         mode: "cors",
@@ -51,7 +62,8 @@ class Questionnaire extends Component {
   };
 
   handleClickStart = () => {
-    this.setState({ started: 1 });
+    const ranses = makeid(4);
+    this.setState({ started: 1, session: ranses });
   };
   render() {
     return (

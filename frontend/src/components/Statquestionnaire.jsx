@@ -58,7 +58,7 @@ class Statquestionnaire extends Component {
           className="btn btn-secondary m-2"
           onClick={this.handleClickSeeStats}
         >
-          See Statistics
+          View Statistics
         </button>
       );
     else

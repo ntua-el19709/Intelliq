@@ -31,7 +31,6 @@ class Question extends Component {
   }
 
   handlePress = (pid, nqid) => {
-    console.log("option pressed");
     if (this.state.options[0].opttxt === "<open string>") {
       if (pid === "") this.setState({ optionselected: -1, nextqid: nqid });
       else this.setState({ optionselected: pid, nextqid: nqid });
