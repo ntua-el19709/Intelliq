@@ -14,42 +14,46 @@ class Statquestionnaire extends Component {
   constructor() {
     super();
     this.state = {
-      questionnaireTitle: "loading...",
-      questions: [],
+      questionnaireTitle: "Loading...",
       started: 0,
+      questions: [],
       found: 1,
     };
   }
-
   componentDidMount() {
     const QID = this.props.params.QID;
-    fetch(`http://localhost:9103/intelliq_api/questionnaire/${QID}`)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.status === "failed") {
-          this.setState({
-            found: 0,
-          });
-        } else {
-          this.setState({
-            questionnaireID: result.questionnaireID,
-            questionnaireTitle: result.questionnaireTitle,
-            questions: result.questions,
-            qID: result.questions[0].qID,
-            started: 0,
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (QID !== this.state.questionnaireID)
+      fetch(`http://localhost:9103/intelliq_api/questionnaire/${QID}`)
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.status === "failed") {
+            this.setState({
+              ...this.state,
+              found: 0,
+              questionnaireID: QID,
+            });
+          } else {
+            this.setState({
+              ...this.state,
+              questionnaireID: result.questionnaireID,
+              questionnaireTitle: result.questionnaireTitle,
+              questions: result.questions,
+              qID: result.questions[0].qID,
+              started: 0,
+              found: 1,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   }
 
   handleClickSeeStats = () => {
-    this.setState({ started: 1 });
+    this.setState({ ...this.state, started: 1 });
   };
   handleClickBack = () => {
-    this.setState({ started: 0 });
+    this.setState({ ...this.state, started: 0 });
   };
   render() {
     return <div>{this.formatPage()}</div>;

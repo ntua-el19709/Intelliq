@@ -26,35 +26,47 @@ function makeid(length) {
 class Questionnaire extends Component {
   constructor() {
     super();
-    this.state = {
+    let temp = window.localStorage.getItem("state");
+    console.log(temp);
+    this.state = JSON.parse(window.localStorage.getItem("state")) || {
       questionnaireTitle: "Loading...",
       started: 0,
       finished: 0,
       found: 1,
     };
+    console.log(this.state);
   }
-
+  setState(state) {
+    window.localStorage.setItem("state", JSON.stringify(state));
+    super.setState(state);
+  }
   componentDidMount() {
     const QID = this.props.params.QID;
-    fetch(`http://localhost:9103/intelliq_api/questionnaire/${QID}`)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.status === "failed") {
-          this.setState({
-            found: 0,
-          });
-        }
-        this.setState({
-          questionnaireID: result.questionnaireID,
-          questionnaireTitle: result.questionnaireTitle,
-          qID: result.questions[0].qID,
-          started: 0,
-          finished: 0,
+    console.log(this.state.questionnaireID);
+    if (QID !== this.state.questionnaireID)
+      fetch(`http://localhost:9103/intelliq_api/questionnaire/${QID}`)
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.status === "failed") {
+            this.setState({
+              ...this.state,
+              questionnaireID: QID,
+              found: 0,
+            });
+          } else
+            this.setState({
+              ...this.state,
+              questionnaireID: result.questionnaireID,
+              questionnaireTitle: result.questionnaireTitle,
+              qID: result.questions[0].qID,
+              started: 0,
+              finished: 0,
+              found: 1,
+            });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   handlePressNext = (nqid, oid) => {
@@ -66,13 +78,13 @@ class Questionnaire extends Component {
       }
     );
 
-    if (nqid === "-") this.setState({ finished: 1 });
-    else this.setState({ qID: nqid });
+    if (nqid === "-") this.setState({ ...this.state, finished: 1 });
+    else this.setState({ ...this.state, qID: nqid });
   };
 
   handleClickStart = () => {
     const ranses = makeid(4);
-    this.setState({ started: 1, session: ranses });
+    this.setState({ ...this.state, started: 1, session: ranses });
   };
   render() {
     return <div>{this.formatPage()}</div>;
@@ -112,7 +124,13 @@ class Questionnaire extends Component {
           />
         </div>
       );
-    else return <h2>Questionnaire Completed</h2>;
+    else
+      return (
+        <div>
+          <h1>{this.state.questionnaireTitle}</h1>
+          <h2>Questionnaire Completed</h2>
+        </div>
+      );
   }
 }
 
