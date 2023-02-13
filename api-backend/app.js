@@ -2,7 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 /* ROUTES and how to import routes */
-const login = require('./routes/login');
+const healthcheck = require('./api/admin/healthcheck');
+const questionnaire_upd = require('./api/admin/questionnaire_upd');
+const resetall = require('./api/admin/resetall');
+
+const questionnaire = require('./api/questionnaire');
+const question = require('./api/question');
+const doanswer = require('./api/doanswer');
 /* end of ROUTES and how to import routes */
 
 const app = express();
@@ -18,7 +24,15 @@ app.use((req, res, next) => {
 });
 
 // /* Routes used by our project */
-app.use('/intelliq_api/login', login);
+
+app.use('/intelliq_api/admin/healthcheck', healthcheck);
+app.use('/intelliq_api/admin/questionnaire_upd', questionnaire_upd);
+app.use('/intelliq_api/admin/resetall', resetall);
+
+app.use('/intelliq_api/doanswer', doanswer);
+app.use('/intelliq_api/question', question);
+app.use('/intelliq_api/questionnaire', questionnaire);
+
 // /*End of routes used by our project */
 
 // In case of an endpoint does not exist
