@@ -15,12 +15,11 @@ async function requestWrapper(expectsData, req, res, successMsg, funcBody) {
                 }
 
                 res.status(200).json(data);
-                console.log(successMsg);
             } else {
                 await funcBody(conn);
-                res.status(200).json({ "status": "OK" });
-                console.log(successMsg);
+                res.status(204).json({ "status": "OK" });
             }
+            console.log(successMsg);
         } finally {
             conn.release();
             failReason = "Failed to execute DB query";
