@@ -1,5 +1,6 @@
 const express = require('express');
 const apiutils = require('../apiutils');
+const Parser = require('@json2csv/plainjs').Parser;
 const router = express.Router();
 
 router.get('/:questionnaireID/:questionID', async (req, res) => {
@@ -28,7 +29,11 @@ router.get('/:questionnaireID/:questionID', async (req, res) => {
             });
         }
 
-        return json_q;
+        if (req.query.format == 'csv') {
+            return new Parser().parse(json_q);
+        } else {
+            return json_q;
+        }
     });
 })
 

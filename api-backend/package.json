@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ntua/SoftEng22-25#readme",
   "dependencies": {
+    "@json2csv/plainjs": "^6.1.2",
     "chai": "^4.3.7",
     "chalk": "^4.1.1",
     "cors": "^2.8.5",

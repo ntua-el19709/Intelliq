@@ -6,15 +6,14 @@ async function requestWrapper(expectsData, req, res, successMsg, funcBody) {
         const conn = await pool.getConnection();
         try {
             if (expectsData) {
-                // (!) always return data in json format
                 const data = await funcBody(conn);
-                
-                if (data == null || data == undefined || data.length == 0) {
-                    res.status(402).json({ "status": "failed", "reason": "No data were found" });
-                    return;
-                }
 
-                res.status(200).json(data);
+                if (req.query.format == 'csv') {
+                    res.set('Content-Type', 'text/csv');
+                    res.status(200).send(data);
+                } else {
+                    res.status(200).json(data);
+                }
             } else {
                 await funcBody(conn);
                 res.status(204).json({ "status": "OK" });

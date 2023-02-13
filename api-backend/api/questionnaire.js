@@ -1,6 +1,25 @@
 const express = require('express');
 const apiutils = require('../apiutils');
+const Parser = require('@json2csv/plainjs').Parser;
 const router = express.Router();
+
+async function convert2json(data) {
+    let new_data = [];
+    for (quest of data.questions) {
+        new_data.push({
+            "questionnaireID": data.questionnaireID,
+            "questionnaireTitle": data.questionnaireTitle,
+            "keywords": data.keywords,
+            "qID": quest.qID,
+            "qtext": quest.qtext,
+            "type": quest.type
+        });
+    }
+    opts = {
+        fields: ["questionnaireID", "questionnaireTitle", "keywords", "qID", "qtext", "type"]
+    };
+    return new Parser(opts).parse(new_data);
+}
 
 router.get('/:questionnaireID', async (req, res) => {
     await apiutils.requestWrapper(true, req, res,
@@ -33,7 +52,11 @@ router.get('/:questionnaireID', async (req, res) => {
             })
         });
 
-        return json_quest;
+        if (req.query.format == 'csv') {
+            return await convert2json(json_quest);
+        } else {
+            return json_quest;
+        }
     });
 })
 
