@@ -1,14 +1,6 @@
 const express = require('express');
 const app = require('./app');
-
 const chalk = require("chalk");
-
-const corsOptions = {
-    origin: "*",
-    credentials: true, //access-control-allow-credentials:true
-    optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
 
 // INSTALL AND UNCOMMENT IF TEMPLATES/LAYOUTS ARE NEEDED
 // const expressLayouts = require('express-ejs-layouts')
