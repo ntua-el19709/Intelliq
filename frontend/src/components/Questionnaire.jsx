@@ -66,6 +66,11 @@ class Questionnaire extends Component {
         })
         .catch((err) => {
           console.log(err);
+          this.setState({
+            ...this.state,
+            questionnaireID: QID,
+            found: 0,
+          });
         });
   }
 

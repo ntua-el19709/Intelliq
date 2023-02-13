@@ -46,6 +46,11 @@ class Statquestionnaire extends Component {
         })
         .catch((err) => {
           console.log(err);
+          this.setState({
+            ...this.state,
+            found: 0,
+            questionnaireID: QID,
+          });
         });
   }
 
