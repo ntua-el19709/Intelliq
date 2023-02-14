@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Statquestion from "./Statquestion";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function withRouter(Component) {
   function ComponentWithRouter(props) {
@@ -84,6 +84,9 @@ class Statquestionnaire extends Component {
           >
             View Statistics
           </button>
+          <Link to="/stats">
+            <button className="btn btn-danger m-2">Exit</button>
+          </Link>
         </div>
       );
     else
