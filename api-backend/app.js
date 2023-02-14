@@ -5,10 +5,14 @@ const bodyParser = require('body-parser');
 const healthcheck = require('./api/admin/healthcheck');
 const questionnaire_upd = require('./api/admin/questionnaire_upd');
 const resetall = require('./api/admin/resetall');
+const resetq = require('./api/admin/resetq');
+const getallquestionnaires = require('./api/admin/getallquestionnaires');
 
 const questionnaire = require('./api/questionnaire');
 const question = require('./api/question');
 const doanswer = require('./api/doanswer');
+const getsessionanswers = require('./api/getsessionanswers');
+const getquestionanswers = require('./api/getquestionanswers');
 /* end of ROUTES and how to import routes */
 
 const app = express();
@@ -24,15 +28,19 @@ app.use((req, res, next) => {
 });
 
 // /* Routes used by our project */
+const baseurl = '/intelliq_api';
 
-app.use('/intelliq_api/admin/healthcheck', healthcheck);
-app.use('/intelliq_api/admin/questionnaire_upd', questionnaire_upd);
-app.use('/intelliq_api/admin/resetall', resetall);
+app.use(baseurl + '/admin/healthcheck', healthcheck);
+app.use(baseurl + '/admin/questionnaire_upd', questionnaire_upd);
+app.use(baseurl + '/admin/resetall', resetall);
+app.use(baseurl + '/admin/resetq', resetq);
+app.use(baseurl + '/admin/getallquestionnaires', getallquestionnaires);
 
-app.use('/intelliq_api/doanswer', doanswer);
-app.use('/intelliq_api/question', question);
-app.use('/intelliq_api/questionnaire', questionnaire);
-
+app.use(baseurl + '/questionnaire', questionnaire);
+app.use(baseurl + '/question', question);
+app.use(baseurl + '/doanswer', doanswer);
+app.use(baseurl + '/getsessionanswers', getsessionanswers);
+app.use(baseurl + '/getquestionanswers', getquestionanswers);
 // /*End of routes used by our project */
 
 // In case of an endpoint does not exist

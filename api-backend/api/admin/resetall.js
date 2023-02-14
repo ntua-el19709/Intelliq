@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
 
             await conn.query(buffer.toString());
 
-            res.status(200).json({ "status": "OK" });
+            res.status(204).json({ "status": "OK" });
             console.log("Successful reset of all tables.");
         } finally {
             conn.release();

@@ -1,21 +1,18 @@
 const express = require('express');
 const app = require('./app');
-
 const chalk = require("chalk");
+const https = require('https');
+const fs = require('fs');
 
-// INSTALL AND UNCOMMENT IF TEMPLATES/LAYOUTS ARE NEEDED
-// const expressLayouts = require('express-ejs-layouts')
-// app.set('view engine', 'ejs')
-// app.set('views', __dirname + '/views')
-// app.set('layout', 'layouts/layout')
-// app.use(expressLayouts)
 app.use(express.static('public'));
 
 const port = process.env.PORT || 9103;
 const baseurl = '/intelliq_api';
 
-// TODO: add support for https
+// const key = fs.readFileSync('./security/key.pem');
+// const cert = fs.readFileSync('./security/cert.pem');
 
+// https.createServer({key, cert}, app).listen(port, () => {
 app.listen(port, () => {
-    console.log(chalk.green(`🚀 Server running at: http://localhost:${port}${baseurl}`));
+    console.log(chalk.green(`🚀 Server running at: https://localhost:${port}${baseurl}`));
 });
