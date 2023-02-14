@@ -6,6 +6,7 @@ const healthcheck = require('./api/admin/healthcheck');
 const questionnaire_upd = require('./api/admin/questionnaire_upd');
 const resetall = require('./api/admin/resetall');
 const resetq = require('./api/admin/resetq');
+const getallquestionnaires = require('./api/admin/getallquestionnaires');
 
 const questionnaire = require('./api/questionnaire');
 const question = require('./api/question');
@@ -33,6 +34,7 @@ app.use(baseurl + '/admin/healthcheck', healthcheck);
 app.use(baseurl + '/admin/questionnaire_upd', questionnaire_upd);
 app.use(baseurl + '/admin/resetall', resetall);
 app.use(baseurl + '/admin/resetq', resetq);
+app.use(baseurl + '/admin/getallquestionnaires', getallquestionnaires);
 
 app.use(baseurl + '/questionnaire', questionnaire);
 app.use(baseurl + '/question', question);
