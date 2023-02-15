@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -11,9 +12,11 @@ function Home() {
         </ul>
       </div>
       <div>
-        <h2> For questionnaire statistics enter:</h2>
+        <h2> For questionnaire statistics click:</h2>
         <ul>
-          <li>localhost:3000/stats/:questionnaireID</li>
+          <li>
+            <Link to="/stats">localhost:3000/stats</Link>
+          </li>
         </ul>
       </div>
     </div>
