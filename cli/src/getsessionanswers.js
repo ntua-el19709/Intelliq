@@ -3,17 +3,20 @@ const axios = require('axios');
 const https = require('https');
 
 module.exports = function(o) {
+    if (o.format === 'csv') format = 'csv';
+    else format = 'json'
+
     var config = {
         method: 'get',
-        url: "http://localhost:9103/intelliq_api/admin/healthcheck",
+        url: `http://localhost:9103/intelliq_api/getsessionanswers/${o.questionnaire_id}/${o.session_id}?format=${format}`,
         httpsAgent: new https.Agent({ rejectUnauthorized: false })
     };
     axios(config)
     .then(res => {
-        console.log(chalk.green('Connection status with database: ' + res.data.status))
+        console.dir(res.data, { depth: null })
     })
     .catch(err => {
-        console.log(chalk.red('Connection status with database: ' + err.response.status));
+        console.log(chalk.red('Error sth went wrong'));
     })
     
 }
