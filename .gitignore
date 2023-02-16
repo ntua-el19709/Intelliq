@@ -1,3 +1,4 @@
 /api-backend/node_modules
 /api-backend/.env
 /cli/node_modules
+/node_modules

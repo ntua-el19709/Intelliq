@@ -44,6 +44,8 @@ class AllStats extends Component {
   }
   formatPage() {
     if (this.state.exist === 0) return <h2>No Questionnaires found</h2>;
+    if (this.state.questionnaires.length === 0)
+      return <h2>No Questionnaires found</h2>;
     return (
       <ul>
         {this.state.questionnaires.map((quest) => (
