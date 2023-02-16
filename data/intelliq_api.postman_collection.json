@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "636193f8-ade1-4cad-8b92-ba329d545d93",
+		"name": "intelliq_api",
+		"description": "This is a collection of the api calls that are used in our project softeng22-25.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25830949"
+	},
+	"item": [
+		{
+			"name": "healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/admin/healthcheck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"healthcheck"
+					]
+				},
+				"description": "This is an admin api call that checks the end-to-end connection of the backend with the database."
+			},
+			"response": []
+		},
+		{
+			"name": "resetall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/admin/resetall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"resetall"
+					]
+				},
+				"description": "This is an admin api call that clears the whole database."
+			},
+			"response": []
+		},
+		{
+			"name": "questionnaire_upd",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"description": "The file with the questionnaire",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/admin/questionnaire_upd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"questionnaire_upd"
+					]
+				},
+				"description": "This is an admin api call that loads a new questionnaire on the database. It needs the questionnaire in a file."
+			},
+			"response": []
+		},
+		{
+			"name": "resetq",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/admin/resetq/:questionnaireID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"resetq",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "",
+							"description": "The id of the questionnaire"
+						}
+					]
+				},
+				"description": "This is an admin api call that clears the questionnaire with id=questionnaireID."
+			},
+			"response": []
+		},
+		{
+			"name": "getallquestionnaires",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/admin/getallquestionnaires",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"getallquestionnaires"
+					]
+				},
+				"description": "This is an admin api call that returns the titles and ids of all the questionnaires in the database."
+			},
+			"response": []
+		},
+		{
+			"name": "questionnaire",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/questionnaire/:questionnaireID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"questionnaire",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": null,
+							"description": "The id of the questionnaire"
+						}
+					]
+				},
+				"description": "This is an api call that returns the questionnaire with id=questionnaireID."
+			},
+			"response": []
+		},
+		{
+			"name": "question",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/question/:questionnaireID/:questionID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"question",
+						":questionnaireID",
+						":questionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": null,
+							"description": "The id of the questionnaire"
+						},
+						{
+							"key": "questionID",
+							"value": null,
+							"description": "The id of the question"
+						}
+					]
+				},
+				"description": "This is an api call that returns the question (with its options) with id=questionnaireID of the questionnaire with id=questionnaireID."
+			},
+			"response": []
+		},
+		{
+			"name": "doanswer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/doanswer/:questionnaireID/:questionID/:session/:optID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"doanswer",
+						":questionnaireID",
+						":questionID",
+						":session",
+						":optID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": null,
+							"description": "The id of the questionnaire"
+						},
+						{
+							"key": "questionID",
+							"value": null,
+							"description": "The id of the question"
+						},
+						{
+							"key": "session",
+							"value": null,
+							"description": "The session (a random 4 character string)"
+						},
+						{
+							"key": "optID",
+							"value": null,
+							"description": "The answer to the question"
+						}
+					]
+				},
+				"description": "This is an api call that inserts an answer to the question with id=questionID of the questionnaire with id=questionnaireID to the database. It also stores the session with which the answer was given."
+			},
+			"response": []
+		},
+		{
+			"name": "getsessionanswers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/getsessionanswers/:questionnaireID/:session",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"getsessionanswers",
+						":questionnaireID",
+						":session"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": null,
+							"description": "the id of the questionnaire"
+						},
+						{
+							"key": "session",
+							"value": null,
+							"description": "the session of the answers"
+						}
+					]
+				},
+				"description": "This is an api call that returns all the answers given in the specific session."
+			},
+			"response": []
+		},
+		{
+			"name": "getquestionionanswers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/getquestionanswers/:questionnaireID/:questionID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"getquestionanswers",
+						":questionnaireID",
+						":questionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": null,
+							"description": "the id of the questionnaire"
+						},
+						{
+							"key": "questionID",
+							"value": null,
+							"description": "the id of the question"
+						}
+					]
+				},
+				"description": "This is an api call that returns all the answers of the question with id=questionID, in the chronological order they were given."
+			},
+			"response": []
+		}
+	]
+}
