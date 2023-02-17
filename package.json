@@ -1,0 +1,30 @@
+{
+  "name": "softeng22-25",
+  "version": "1.0.0",
+  "description": "Group: SoftEng22-25\r Members: el18240, el19709, el18610, el19705",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "proxy": "http:localhost:9103/",
+  "scripts": {
+    "client": "cd frontend && npm start",
+    "server": "cd api-backend && npm run devStart",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installAll": "cd api-backend && npm install && cd ../cli && npm install && cd ../frontend && npm install && cd .. && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntua/SoftEng22-25.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ntua/SoftEng22-25/issues"
+  },
+  "homepage": "https://github.com/ntua/SoftEng22-25#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
