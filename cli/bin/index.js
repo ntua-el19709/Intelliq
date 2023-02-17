@@ -92,7 +92,7 @@ commands.command('getquestionanswers')
 
 commands.parse(process.argv);
 var scope = process.argv[2];
-var scopeList = ['healthcheck', 'hc', 'resetall', 'r','questionnaire_upd', 'qup', 'questionnaire', 'q', 'resetq', 'rq','question','qn','getsessionanswer', 'gsa', 'getquestionanswers', 'gqa' ];
+var scopeList = ['healthcheck', 'hc', 'resetall', 'r','questionnaire_upd', 'qup', 'questionnaire', 'q', 'resetq', 'rq','question','qn','getsessionanswers', 'gsa', 'getquestionanswers', 'gqa', 'doanswer', 'da' ];
 
 if (process.argv.length < 3) {
 	console.log(process.argv.length < 3);
