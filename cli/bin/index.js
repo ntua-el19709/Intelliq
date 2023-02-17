@@ -40,7 +40,7 @@ commands.command('resetall')
 
 commands.command('questionnaire_upd')
 .alias('qup')
-.description('update questionnair')
+.description('update questionnaire')
 .requiredOption('-src, --source [source]', 'Source')
 .action( function(o) { questionnaire_upd(o) } )
 
@@ -53,7 +53,7 @@ commands.command('questionnaire')
 
 commands.command('resetq')
 .alias('rq')
-.description('reset questionnair')
+.description('reset questionnaire')
 .requiredOption('-qid, --questionnaire_id [questionnaire_id]', 'questionnaire_id')
 .action( function(o) { resetq(o) } )
 
@@ -67,7 +67,7 @@ commands.command('question')
 
 commands.command('doanswer')
 .alias('da')
-.description('takes questionnair id, question id, session id and lets you give an answer')
+.description('takes questionnaire id, question id, session id and lets you give an answer')
 .requiredOption('-qid, --questionnaire_id [questionnaire_id]', 'questionnaire_id')
 .requiredOption('-qn, --question_id [question_id]', 'question_id')
 .requiredOption('-sid, --session_id [session_id]', 'session_id')
