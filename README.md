@@ -3,34 +3,24 @@
 Group: SoftEng22-25
 Members: el18240, el19709, el18610, el19705
 
-## Back-end server
+## Required Dependencies
 
-In the `./api-backend` directory, you can run:
+For the app to work, you need to have installed NodeJS and MySQL server. It is required to have initialized the DB schema found in `/database`.
 
-### `npm run devStart`
+## Build (install all dependencies)
 
-Runs the backend server in development mode. The server will restart when you make changes.
+To build the project, run:
 
-### `npm start`
+`npm run installAll`
 
-Runs the backend in production mode. Does not restart the server if you make changes.
+## Start
 
-## Front-end
+To start the backend and frontend servers, run:
 
-In the `./frontend` directory, you can run:
+`npm start`
 
-### `npm start`
+## Tests
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To run the tests, go to `/api-backend/` and run:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`npm test`

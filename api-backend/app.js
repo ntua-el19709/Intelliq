@@ -17,6 +17,8 @@ const getquestionanswers = require('./api/getquestionanswers');
 
 const app = express();
 
+console.log(`NODE_ENV = |${process.env.NODE_ENV}|`);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
