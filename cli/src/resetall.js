@@ -10,7 +10,7 @@ module.exports = function(o) {
     };
     axios(config)
     .then(res => {
-        console.log(chalk.green('Reset status: ' + res.data.status))
+        console.log(chalk.green('Reset status: ' + res.status))
     })
     .catch(err => {
         console.log(chalk.red("Status:", err.response.data.status, "Reason:", err.response.data.reason));
